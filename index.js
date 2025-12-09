@@ -13,10 +13,10 @@ app.get("/",()=>{
 // req => This always comes from frontend
 // res => This is something we send from backend
 app.post('/login', (req, res) => {
-    const username = req.body.username
+    const username = req.body.email
     const password = req.body.password
 
-    if(username == "yoon" && password == 12345){
+    if(username == "yoon@gmail.com" && password == 12345){
         res.json({
             "status": true,
             "message": "Logged in successfully"
