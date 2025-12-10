@@ -9,7 +9,7 @@ app.get("/",()=>{
     res.send("Server is running on port 4000")
 })
 
-// Get route -send from front end to backend
+// Get route -send from front end to backenddddd
 // req => This always comes from frontend
 // res => This is something we send from backend
 app.post('/login', (req, res) => {
