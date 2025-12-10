@@ -1,10 +1,10 @@
 const express = require("express")
-
+var cors = require('cors')
 const app = express()
 const PORT = 4000
 
 app.use(express.json())
-
+app.use(cors())
 app.get("/",()=>{
     res.send("Server is running on port 4000")
 })
