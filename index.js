@@ -1,36 +1,18 @@
 const express = require("express")
-var cors = require('cors')
+const cors = require('cors')
 const app = express()
 const PORT = 4000
+const connectDB =  require("./config/database")
+const routes = require("./route/route")
+
+// connection to mongo db
+require('dotenv').config()
+connectDB()
 
 app.use(express.json())
 app.use(cors())
-app.get("/",()=>{
-    res.send("Server is running on port 4000")
-})
-
-// Get route -send from front end to backenddddd
-// req => This always comes from frontend
-// res => This is something we send from backend
-app.post('/login', (req, res) => {
-    const username = req.body.email
-    const password = req.body.password
-
-    if(username == "yoon@gmail.com" && password == 12345){
-        res.json({
-            "status": true,
-            "message": "Logged in successfully"
-    })
-    }else{
-        res.json({
-            "status": false,
-            "message": "Invalid username or password"
-    })
-    }
-})
+app.use("/", routes)
 
 app.listen(PORT, (req, res)=>{
     console.log("Server is running")
 })
-
-// There are four types of api routes GET, POST, UPDATE, DELETE
