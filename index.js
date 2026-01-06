@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = express()
 const PORT = 4000
 const connectDB =  require("./config/database")
-const routes = require("./route/route")
+const routes = require("./routes/route")
 
 // connection to mongo db
 require('dotenv').config()
