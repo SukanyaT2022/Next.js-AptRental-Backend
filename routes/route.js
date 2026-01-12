@@ -1,5 +1,6 @@
 const express = require("express")
 const router = express.Router()
+const { fetchUsers } = require("../models/user.js")  //Named import
 
 // Get route -send from front end to backenddddd
 // req => This always comes from frontend
@@ -10,21 +11,12 @@ router.get("/", (req, res)=>{
     res.send("Server is running on port 4000")
 })
 
-router.post('/login', (req, res) => {
-    const username = req.body.email
-    const password = req.body.password
+router.get('/users', (req, res) => {
+    fetchUsers(req, res)
+})
 
-    if(username == "yoon@gmail.com" && password == 12345){
-        res.json({
-            "status": true,
-            "message": "Logged in successfully"
-    })
-    }else{
-        res.json({
-            "status": false,
-            "message": "Invalid username or password"
-    })
-    }
+router.post('/login', (req, res) => {
+    const response = findUser(req, res)
 })
 
 module.exports = router

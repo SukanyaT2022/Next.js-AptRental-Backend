@@ -1,15 +1,17 @@
+// This schema will create User table in MongoDB
+
 const mongoose = require('mongoose');
 
-// Define the schema or table columns
 const userSchema = new mongoose.Schema({
-  name: String, // Shorthand for { type: String }
+  name: String,
   email: { type: String, required: true, lowercase: true },
   age: { type: Number, min: 18, max: 65 },
+  password: {type: String}
   createdAt: { type: Date, default: Date.now }
 });
 
 // This line will create above columns in "User" table
-const User = mongoose.model('User', userSchema);
+const USER = mongoose.model('User', userSchema);
 
 
-export.modules = { User }
+module.exports = { USER }

@@ -1,15 +1,35 @@
-const USER = require("../schemas/user.js")
-
+const { USER } = require("../schemas/user.js")
+//USER come from schemas
 function addUser(){
-    const newUser = new User({name: "Yoon",email: "yoon@gmail.com",age: 14});
+    // const newUser = new User({name: "Yoon",email: "yoon@gmail.com",age: 14});
 
-    await newUser.save();
+    // await newUser.save();
 }
 
-function fetchUser(){}
+async function fetchUsers(req, res){
+    const users = await USER.find();
+    res.json(users)
+}
 
-function deleteUser(){}
+async function findUser() {
+    //come from front end for existing user for log in
+    const username = req.body.email
+    const password = req.body.password
 
-function updateUser(){}
+    const response = USER.find({email: username, password: password })
+
+    if(response){
+        res.json({
+            "status": true,
+            "message": "Logged in successfully"
+        })
+    } else{
+        res.json({
+            "status": false,
+            "message": "Invalid username or password"
+        })
+    }
+}
 
 
+module.exports = { addUser, fetchUsers }
