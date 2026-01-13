@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { fetchUsers } = require("../models/user.js")  //Named import
+const { fetchUsers, findUser } = require("../models/user.js")  //Named import
 
 // Get route -send from front end to backenddddd
 // req => This always comes from frontend
@@ -16,7 +16,7 @@ router.get('/users', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    const response = findUser(req, res)
+    findUser(req, res)
 })
 
 module.exports = router
