@@ -12,26 +12,31 @@ async function fetchUsers(req, res){
 }
 
 async function findUser(req, res) {
-    //come from front end for existing user for log in
-    const frontend_username = req.body.username
-    const frotend_password = req.body.password
+    const frontend_username = req.body.username.trim()
+    const frontend_password = req.body.password.trim()
 
-    const user = USER.find({username: frontend_username})
+    const user = await USER.findOne({username: frontend_username})
 
     if(!user){
-        res.json({
-            "status": falase,
+        return res.json({
+            "status": false,
             "message": "User does not exist try to register"
         })
     }
 
-    if(user.password === frotend_password){
-        res.json({
+    console.log('User password:', user.password)
+
+    if(user.password === frontend_password){
+        return res.json({
             "status": true,
             "message": "Logged in successfully"
         })
     }
 
+    return res.json({
+        "status": false,
+        "message": "Invalid username or password!"
+    })
 }
 
 
